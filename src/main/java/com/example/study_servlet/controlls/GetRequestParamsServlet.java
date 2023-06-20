@@ -9,13 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/getRequestParamsServlet")
-public class GetRequestParamsServlet extends HttpServlet{
-    @Override
+@WebServlet(urlPatterns="/getRequestParamsServlet")
+public class GetRequestParamsServlet extends HttpServlet {
+    @Override //상속이 된걸 확장 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            // PrintWriter printWriter = response.getWriter();
+            // String contents = "";
+            // printWriter.println(contents);
+            // printWriter.close();
             String firstName = request.getParameter("first_name");
             String secondName = request.getParameter("second_name");
+            //클라이언트가 넣은 값이 화면에 표시되게하기 위함. 
             PrintWriter printWriter = response.getWriter();
             // String contents = "Hye In kIm!";
             String contents = "<!DOCTYPE html>\r\n" + //
@@ -30,13 +35,10 @@ public class GetRequestParamsServlet extends HttpServlet{
                     "    <div>second Name : "+secondName+"</div>\r\n" + //
                     "</body>\r\n" + //
                     "</html>";
-            printWriter.println(contents); //화면 display가 terminal이 아니라 네트워크에 실어 보내는 것.
-            printWriter.close();
-            // PrintWriter printWriter = response.getWriter(); //response.getWriter()를 네트워크에 실어보낸다.
-            // String contents = "";
-            // printWriter.println(contents);
-            // printWriter.close();
-            
+            printWriter.println(contents); //화면 display가 terminal이 아니라 네트워크에 실어 보내는 것, 화면 display가 terminal이 아니라 네트워크에 실어 보내서 웹 화면상에 표현된다.
+            printWriter.close(); //자원을 사용했으면 꼭 반납해줘야 함.
+           
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
