@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlet.commons.Commons;
+import com.example.study_servlet.daos.FactorysDao;
 
 @WebServlet(urlPatterns = "/ConeectDBServlet")
 public class ConeectDBServlet extends HttpServlet {
@@ -55,15 +58,16 @@ public class ConeectDBServlet extends HttpServlet {
                     "            <tbody>\r\n"; //
             
             // - query Edit
-            Commons commons = new Commons();
-            Statement statement = commons.getStatement();
-            String query = "SELECT * FROM factorys";
-            ResultSet resultSet = statement.executeQuery(query);// resultset은 재활용 가능
-            while (resultSet.next()) {
-                contents = contents + "<tr>\r\n" + //
-                    "                    <td>"+resultSet.getString("COMPANY_ID")+"</td>\r\n" + //
-                    "                    <td>"+resultSet.getString("COMPANY")+"</td>\r\n" + //
-                    "                </tr>\r\n" ; // 
+            FactorysDao factorysDao = new FactorysDao(); 
+            ArrayList factoryList = new ArrayList();
+            factoryList = factorysDao.selectAll();
+            for(int i=0; i < factoryList.size(); i=i+1) {
+                HashMap hashMap = new HashMap();
+                hashMap = (HashMap) factoryList.get(i);
+                contents = contents + "<tr>\r\n " + //
+                                                " <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                                                " <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
+                                                " </tr>\r\n"; //";
             }
 
             contents = contents + "</tbody>\r\n" + //
@@ -85,14 +89,14 @@ public class ConeectDBServlet extends HttpServlet {
             printWriter.close();
 
             // SELECT COUNT(*) AS CNT FROM factorys;
-            query = "SELECT COUNT(*) AS CNT FROM factorys";
-            resultSet = statement.executeQuery(query);
-            resultSet.next();
-            int totalCount = 0;
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("CNT"));
-                totalCount = resultSet.getInt("CNT");
-            } // while문 없어도 작동하지만 그래도 통일성 있게 주는거임
+            // query = "SELECT COUNT(*) AS CNT FROM factorys";
+            // resultSet = statement.executeQuery(query);
+            // resultSet.next();
+            // int totalCount = 0;
+            // while (resultSet.next()) {
+            //     System.out.println(resultSet.getInt("CNT"));
+            //     totalCount = resultSet.getInt("CNT");
+            // } // while문 없어도 작동하지만 그래도 통일성 있게 주는거임
 
             // INSERT INTO factorys
             // (COMPANY_ID, COMPANY)

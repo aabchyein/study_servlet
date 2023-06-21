@@ -8,19 +8,24 @@ import java.util.HashMap;
 import com.example.study_servlet.commons.Commons;
 
 public class FactorysDao {
-    public int selectAll() {
-        Commons commons = new Commons();
-        Statement statement = commons.getStatement();
-        String query = "SELECT * FROM factorys";
-        ResultSet resultSet = statement.executeQuery(query);// resultset은 재활용 가능
-        ArrayList arrayList = new ArrayList();  // ArrayList에 while문이 돌 때마다 resultSet을 담는다.
-        HashMap hashMap = new HashMap();
-        while (resultSet.next()) {
-            hashMap = new HashMap();
-            hashMap.put("COMPANY_ID", resultSet.getString("COMPANY_ID"));
-            hashMap.put("COMPANY", resultSet.getString("COMPANY"));
-            arrayList.add(hashMap);
+    public ArrayList selectAll() {
+        ArrayList arrayList = new ArrayList();
+        try {
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
+            String query = "SELECT * FROM factorys";
+            ResultSet resultSet = statement.executeQuery(query);// resultset은 재활용 가능
+            HashMap hashMap = new HashMap();
+            while (resultSet.next()) {
+                hashMap = new HashMap();
+                hashMap.put("COMPANY_ID", resultSet.getString("COMPANY_ID"));
+                hashMap.put("COMPANY", resultSet.getString("COMPANY"));
+                arrayList.add(hashMap);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        return 0;
+
+        return arrayList;
     }
 }
