@@ -13,19 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.study_servlet.commons.Commons;
+
 @WebServlet(urlPatterns = "/ConeectDBServlet")
 public class ConeectDBServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try {
-            // - MySQL workbench 실행 : JDBC
-            // - User/password와 접속 IP:port 접속
-            String url = "jdbc:mysql://192.168.0.31:3306/db_cars";
-            String user = "yojulab";
-            String password = "!yojulab*";
-
-            Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("DB연결 성공\n");
+            
 
             // 클라이언트에 html 화면 제공
             String contents = "<!DOCTYPE html>\r\n" + //
@@ -60,7 +55,8 @@ public class ConeectDBServlet extends HttpServlet {
                     "            <tbody>\r\n"; //
             
             // - query Edit
-            Statement statement = connection.createStatement();
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
             String query = "SELECT * FROM factorys";
             ResultSet resultSet = statement.executeQuery(query);// resultset은 재활용 가능
             while (resultSet.next()) {
@@ -82,6 +78,8 @@ public class ConeectDBServlet extends HttpServlet {
                     "</html>";
 
             // 클라이언트에 html 화면 제공
+            response.setContentType("text/html;charset=UTF-8");
+
             PrintWriter printWriter = response.getWriter();
             printWriter.println(contents);
             printWriter.close();
