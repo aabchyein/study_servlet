@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "study_servlet",
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}

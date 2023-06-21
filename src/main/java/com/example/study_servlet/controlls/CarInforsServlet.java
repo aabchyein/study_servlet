@@ -33,7 +33,8 @@ public class CarInforsServlet extends HttpServlet {
             String query = "SELECT * FROM car_infors";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("CAR_NAME") + resultSet.getString("YEAR") + resultSet.getString("CAR_INFOR_ID") + resultSet.getString("COMPANY_ID"));
+                System.out.println(resultSet.getString("CAR_NAME") + resultSet.getString("YEAR")
+                                + resultSet.getString("CAR_INFOR_ID") + resultSet.getString("COMPANY_ID"));
             }
 
             // - INSERT QUERY
@@ -58,4 +59,30 @@ public class CarInforsServlet extends HttpServlet {
         }
         System.out.println();
     }
+
+
+
+    //         Common commons = new Common();
+    //         query = "insert into car_infors\n" + //
+    //                 "(CAR_NAME, YEAR, CAR_INFOR_ID, COMPANY_ID)\n" + //
+    //                 "values\n" + //
+    //                 "('angelalala', '2000', '" + commons.generateUUID() + "', 'C005');";
+
+    //         int count = statement.executeUpdate(query);
+
+    //         query = "SELECT * FROM db_cars.car_infors;";
+    //         resultSet = statement.executeQuery(query);
+    //         while (resultSet.next()) {
+    //             System.out.println(resultSet.getString("CAR_NAME") + resultSet.getString("YEAR")
+    //                     + resultSet.getString("CAR_INFOR_ID") + resultSet.getString("COMPANY_ID"));
+    //         }
+
+    //     } catch (Exception e) {
+
+    //         System.out.println(e.getMessage());
+    //     }
+
+    //     System.out.println();
+
+    // }
 }
