@@ -20,10 +20,10 @@ import com.example.study_servlet.daos.FactorysDao;
 
 @WebServlet(urlPatterns = "/ConeectDBServlet")
 public class ConeectDBServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            try {
-            
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                        throws ServletException, IOException {
+                try {
 
             // 클라이언트에 html 화면 제공
             String contents = "<!DOCTYPE html>\r\n" + //
@@ -69,81 +69,81 @@ public class ConeectDBServlet extends HttpServlet {
                                                 " <td>" + hashMap.get("COMPANY") + "</td>\r\n" + //
                                                 " </tr>\r\n"; //";
             }
+                contents = contents + "</tbody>\r\n" + //
+                                        "        </table>\r\n" + //
+                                        "    </div>\r\n" + //
+                                        "\r\n" + //
+                                        "</body>\r\n" + //
+                                        "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
+                                        + //
+                                        "\r\n" + //
+                                        "</html>\r\n" + //
+                                        "</body>\r\n" + //
+                                        "</html>";
 
-            contents = contents + "</tbody>\r\n" + //
-                    "        </table>\r\n" + //
-                    "    </div>\r\n" + //
-                    "\r\n" + //
-                    "</body>\r\n" + //
-                    "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n" + //
-                    "\r\n" + //
-                    "</html>\r\n" + //
-                    "</body>\r\n" + //
-                    "</html>";
+                        // 클라이언트에 html 화면 제공
+                        response.setContentType("text/html;charset=UTF-8");
 
-            // 클라이언트에 html 화면 제공
-            response.setContentType("text/html;charset=UTF-8");
+                        PrintWriter printWriter = response.getWriter();
+                        printWriter.println(contents);
+                        printWriter.close();
 
-            PrintWriter printWriter = response.getWriter();
-            printWriter.println(contents);
-            printWriter.close();
+                        // SELECT COUNT(*) AS CNT FROM factorys;
+                        //query = "SELECT COUNT(*) AS CNT FROM factorys";
+                        //resultSet = statement.executeQuery(query);
+                        //resultSet.next();
+                        //int totalCount = 0;
+                        //while (resultSet.next()) {
+                                //System.out.println(resultSet.getInt("CNT"));
+                               // totalCount = resultSet.getInt("CNT");
+                        //} // while문 없어도 작동하지만 그래도 통일성 있게 주는거임
 
-            // SELECT COUNT(*) AS CNT FROM factorys;
-            // query = "SELECT COUNT(*) AS CNT FROM factorys";
-            // resultSet = statement.executeQuery(query);
-            // resultSet.next();
-            // int totalCount = 0;
-            // while (resultSet.next()) {
-            //     System.out.println(resultSet.getInt("CNT"));
-            //     totalCount = resultSet.getInt("CNT");
-            // } // while문 없어도 작동하지만 그래도 통일성 있게 주는거임
+                        // INSERT INTO factorys
+                        // (COMPANY_ID, COMPANY)
+                        // VALUE
+                        // ('CAR-01', 'AUDI') ; 테이블 없이 아웃풋 나옴
+                        // 변수로 만들어주고 query에 넣는게 좋음. 쿼리 뒤에 띄어쓰기 한번씩 하기
 
-            // INSERT INTO factorys
-            // (COMPANY_ID, COMPANY)
-            // VALUE
-            // ('CAR-01', 'AUDI') ; 테이블 없이 아웃풋 나옴
-            // 변수로 만들어주고 query에 넣는게 좋음. 쿼리 뒤에 띄어쓰기 한번씩 하기
+                      //  String companyId = "CAR-01";
+                       // String company = "AUDI";
+                       // //query = "INSERT INTO factorys " +
+                                    //    "(COMPANY_ID, COMPANY) " +
+                                     //   " VALUE " +
+                                     //   "('" + companyId + "', '" + company + "') ";
 
-            String companyId = "CAR-01";
-            String company = "AUDI";
-            query = "INSERT INTO factorys " +
-                    "(COMPANY_ID, COMPANY) " +
-                    " VALUE " +
-                    "('" + companyId + "', '" + company + "') ";
+                       // int count = statement.executeUpdate(query); // intert update delete는 executeupdate쓴다. select문
+                                                                    // 빼고.
 
-            int count = statement.executeUpdate(query); // intert update delete는 executeupdate쓴다. select문 빼고.
+                        // update factorys
+                        // SET COMPANY = '패러리'
+                        // WHERE COMPANY_ID = 'CAR-01' ;
 
-            // update factorys
-            // SET COMPANY = '패러리'
-            // WHERE COMPANY_ID = 'CAR-01' ;
+                       // companyId = "CAR-01";
+                       // company = "패러리";
 
-            companyId = "CAR-01";
-            company = "패러리";
+                       // query = "UPDATE factorys " +
+                              //          "SET COMPANY = ('" + company + "') " +
+                             //           "WHERE COMPANY_ID = ('" + companyId + "') ";
 
-            query = "UPDATE factorys " +
-                    "SET COMPANY = ('" + company + "') " +
-                    "WHERE COMPANY_ID = ('" + companyId + "') ";
+                        //count = statement.executeUpdate(query);
 
-            count = statement.executeUpdate(query);
+                        // DELETE FROM factorys
+                        // WHERE COMPANY_ID = 'CAR-01'
 
-            //DELETE FROM factorys
-            // WHERE COMPANY_ID = 'CAR-01'
+                       // companyId = "CAR-01";
 
-             companyId = "CAR-01";
+                      //  query = "DELETE FROM factorys " +
+                                        //"WHERE COMPANY_ID = ('" + companyId + "') ";
 
+                      //  count = statement.executeUpdate(query);
 
-             query = "DELETE FROM factorys " +
-                     "WHERE COMPANY_ID = ('" + companyId + "') ";
+                        //System.out.println();
 
-              count = statement.executeUpdate(query);
+                } catch (Exception e) {
+                        // TODO: handle exception
+                        System.out.println(e.getMessage());
+                }
+                System.out.println();
 
-            System.out.println();
-
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
         }
-        System.out.println();
-    
-    }
 }
