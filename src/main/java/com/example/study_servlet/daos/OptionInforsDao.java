@@ -4,45 +4,83 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import com.example.study_servlet.commons.Commons;
 
 public class OptionInforsDao {
-    public int DeleteWithUniqueID (String unique_id) {
+    // INSERT 메소드 만들기
+    public int OptionInforsInsertServlet(String name) {
+        int count = 0;
         try {
-            Commons commons = new Commons();  // commons 클래스를 인스턴스화
+            Commons commons = new Commons();
+            String uuid = commons.generateUUID();
             Statement statement = commons.getStatement();
-            String query= "DELETE FROM option_infors\n" + //
-                    "WHERE OPTION_INFOR_ID = '"+unique_id+"';";
+            String query = "INSERT INTO option_infors\n" + //
+                    "(OPTION_INFOR_ID, OPTION_NAME)\n" + //
+                    "VALUES\n" + //
+                    "('" + uuid + "', '" + name + "');";
+            count = statement.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } return 0;
+        }
+        return count;
+    }
+
+    // UPDATE 메소드 만들기
+    public int OptionInforsUpdateServlet(String name) {
+        int count = 0;
+        try {
+            Commons commons = new Commons();
+            Statement statement = commons.getStatement();
+            String query = "UPDATE option_infors\n" + //
+                    "SET OPTION_NAME = '" + name + "'" + //
+                    "WHERE OPTION_INFOR_ID = 'OI001';";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
+
+    // DELETE 메소드 만들기
+    public int DeleteWithUniqueID(String unique_id) {
+        int count = 0;
+        try {
+            Commons commons = new Commons(); // commons 클래스를 인스턴스화
+            Statement statement = commons.getStatement();
+            String query = "DELETE FROM option_infors\n" + //
+                    "WHERE OPTION_INFOR_ID = '" + unique_id + "';";
+            count = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
     }
 
     public ArrayList SelectWithSearch(String search) {
         ArrayList optionInforList = new ArrayList<>();
         try {
-            if(search == null) {
+            if (search == null) {
                 search = "";
             }
-            Commons commons = new Commons();  // commons 클래스를 인스턴스화
+            Commons commons = new Commons(); // commons 클래스를 인스턴스화
             Statement statement = commons.getStatement(); // Editor in workbanch , statement에 getStatement를 담아줌
             String query = "SELECT *\n" + //
                     "FROM option_infors\n" + //
-                    "WHERE OPTION_NAME like '"+search+"%';";
-            statement.executeQuery(query);  // editor창에서 query문 실행
+                    "WHERE OPTION_NAME like '" + search + "%';";
+            statement.executeQuery(query); // editor창에서 query문 실행
             ResultSet resultSet = statement.executeQuery(query);// 실행시키면 resultSet으로 떨어짐. 그걸 resultSet에 받음
 
             HashMap optionInforRecord = new HashMap<>();
-            while(resultSet.next())  {
+            while (resultSet.next()) {
                 optionInforRecord = new HashMap<>();
                 optionInforRecord.put("OPTION_INFOR_ID", resultSet.getString("OPTION_INFOR_ID"));
                 optionInforRecord.put("OPTION_NAME", resultSet.getString("OPTION_NAME"));
 
                 optionInforList.add(optionInforRecord);
 
-
-                    }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

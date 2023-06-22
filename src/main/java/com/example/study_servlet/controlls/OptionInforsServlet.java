@@ -71,7 +71,7 @@ public class OptionInforsServlet extends HttpServlet {
                     + //
                     "</html>";
 
-            // getWriter전에 charset 하기
+            // getWriter전에 charset 하기 (html파일에서 한글이 깨지지 않게 해줌)
             response.setContentType("text/html;charset=UTF-8");
 
             PrintWriter printWriter = response.getWriter();
