@@ -23,7 +23,6 @@ public class OptionInforsServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             String search = request.getParameter("search");
-
             String contents = "<!DOCTYPE html>\r\n" + //
                     "<html lang=\"en\">\r\n" + //
                     "<head>\r\n" + //
