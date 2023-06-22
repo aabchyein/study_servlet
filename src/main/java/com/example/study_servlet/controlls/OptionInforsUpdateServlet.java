@@ -33,5 +33,22 @@ public class OptionInforsUpdateServlet extends HttpServlet{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        // 명주
+    //     try {String option_name = request.getParameter("name");
+
+    //     OptionInforsDao optionInforsDao = new OptionInforsDao();
+    //     int count = optionInforsDao.Update(option_name);
+
+    //    response.setContentType("text/html;charset=UTF-8");
+    //    PrintWriter printWriter = response.getWriter();
+    //    String contents = "Update count: " +count;
+
+    //     printWriter.println(contents);
+    //    printWriter.close();
+
+            
+    //     } catch (Exception e) {
+    //         System.out.println(e.getMessage());
+    //     }
     }
 }
