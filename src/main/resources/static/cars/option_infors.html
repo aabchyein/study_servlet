@@ -1,4 +1,4 @@
-"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,33 +8,28 @@
 </head>
 <body>
     <div class="container">
+        <form action="/OptionInforsServlet">
+        <label for="">검색</label>
+        <input type="text" name="search">
+        <button>검색 하기</button>
+        </form>
+    </div>
+    <div class="container">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>OPTION_INFOR_ID</th>
                     <th>OPTION_NAME</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>OI001</td>
-                    <td>네비게이션
-                </tr>
-                <tr>
-                    <td>OI002</td>
-                    <td>후방 카메라
-                </tr>
-                <tr>
-                    <td>OI003</td>
-                    <td>가죽 시트
-                </tr>
-                <tr>
-                    <td>OI004</td>
-                    <td>파노라마 썬루프
-                </tr>
-                <tr>
-                    <td>OI005</td>
-                    <td>안전 패키지
+                    <td>네비게이션</td>
+                    <td>
+                        <button formaction="">OI001</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -42,4 +37,4 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</html>"
+</html>

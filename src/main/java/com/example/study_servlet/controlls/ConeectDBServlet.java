@@ -85,7 +85,7 @@ public class ConeectDBServlet extends HttpServlet {
                                                 " <td>" + hashMap.get("CAR_NAME") + "</td>\r\n" + //
                                                 " <td>" + hashMap.get("YEAR") + "</td>\r\n" + //
                                                 " <td>" + hashMap.get("CAR_INFOR_ID") + "</td>\r\n" + //
-                                                " <td>" + hashMap.get("COMPANY_ID") + "</td>\r\n" + //
+                                                " <td>" + hashMap.get("COMPANY_ID") +  "</td>\r\n" + //
                                                 " </tr>\r\n"; // ";
                         }
 
@@ -104,7 +104,7 @@ public class ConeectDBServlet extends HttpServlet {
                         // 클라이언트에 html 화면 제공
                         response.setContentType("text/html;charset=UTF-8");
 
-                        PrintWriter printWriter = response.getWriter();
+                        PrintWriter printWriter = response.getWriter();  // 자원을 printwriter에 넘겨주는 것.
                         printWriter.println(contents);
                         printWriter.close();
 
