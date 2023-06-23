@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/mynameRequestServletJSP")
+@WebServlet(urlPatterns = "/mynameRequestServletJSP")  // 파라미터는 필요하지 않음. 화면에 띄우기만 할 것이라서
 public class MynameRequestServletJSP extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
