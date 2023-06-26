@@ -1,4 +1,4 @@
-package com.example.study_servlet;
+package com.example.study_servlet.filters;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +14,7 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("HelloWorldServlet - doGet()");
         try {
+            response.setContentType("text/html;charset=UTF-8");  // 한글 처리
             String firstName = "HyeIn";
             String secondName = "Kim";
             PrintWriter printWriter = response.getWriter();
