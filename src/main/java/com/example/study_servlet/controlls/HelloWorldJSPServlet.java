@@ -15,7 +15,9 @@ public class HelloWorldJSPServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    
         try {
-            String contents = "Yoju Lab !";
+            // String contents = "Yoju Lab !";
+            String contents = request.getParameter("company"); //getParameter로 값을 받아서 attribute로 값을 세팅.
+
 
             request.setAttribute("contents", contents);
             //다음 파일 호출  
