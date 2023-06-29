@@ -2,6 +2,7 @@ package com.example.study_servlet.controlls;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.study_servlet.daos.PollsDao;
 
-@WebServlet(urlPatterns = "poll/SurveyServlet")
+@WebServlet(urlPatterns = "/poll/SurveyServlet")
 public class PollSurveyServlet extends HttpServlet {
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,6 +24,19 @@ public class PollSurveyServlet extends HttpServlet {
             PollsDao pollsDao = new PollsDao();
             ArrayList surveyList = pollsDao.SelectWithSearch(contents); 
 
+            for(int i=0; i< surveyList.size(); i=i+3) {
+
+                HashMap survey = (HashMap)surveyList.get(i);
+                String questions = (String)survey.get("QUESTIONS");
+                System.out.println(questions);
+
+                for(int j=0; j<3; j=j+1)
+                
+               {survey =(HashMap)surveyList.get(j);
+                String choice = (String)survey.get("CHOICE");
+                System.out.println(choice);}
+
+            }
 
             request.setAttribute("contents", contents);
             // 다음 파일 호출
@@ -33,4 +47,4 @@ public class PollSurveyServlet extends HttpServlet {
             System.out.println(e.getMessage());
         }
 }
-}
+            }
