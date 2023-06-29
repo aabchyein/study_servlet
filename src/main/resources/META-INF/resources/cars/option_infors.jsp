@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.HashMap, java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +12,9 @@
 <body>
     <div class="container">
         <%
-        String search = (String) request.getAttribute("search");
+        String search = (String)request.getAttribute("search");
         %>
-        <form action="/OptionInforsServlet">
+        <form action="/optionInforsServlet">
             <label>검색
                 <input type="text" name="search" value="<%= search %>">
             </label>
@@ -30,31 +31,31 @@
                 </tr>
             </thead>
             <%
-            ArrayList optionInforList = new ArrayList();
-            optionInforList = (ArrayList) request.getAttribute("optionInforList");
+            ArrayList optionInforList = new ArrayList<>();
+            optionInforList = (ArrayList)request.getAttribute("optionInforList"); //정해주지 않으면 담길때 덩어리로 남김 
             %>
-
-            <tbody>
-                <% for(int i=0; i< optionInforList.size(); i=i+1) { %>
-                    <%
-                    HashMap optionInforRecord = new HashMap<>();
-                    optionInforRecord = (HashMap) optionInforList.get(i);
-                    %>
-                <form>
-                    <input type="hidden" name="unique_id" value="<%= optionInforRecord.get("OPTION_INFOR_ID") %>">
-                <tr>
-                    <td><%= optionInforRecord.get("OPTION_INFOR_ID") %></td>
-                    <td><%= optionInforRecord.get("OPTION_NAME") %></td>
-                    <td>
-                        <button type="submit" formaction="/optionInforsDeleteServlet">
-                            <%= optionInforRecord.get("OPTION_INFOR_ID") %>
-                        </button>
-                    </td>
-                </tr>
-                </form>
-            <% } %>
-            </tbody>
-
+            <form action="">
+                <tbody>
+                    <% for(int i=0; i< optionInforList.size(); i=i+1) { %>
+                        <%
+                        HashMap optionInforRecord = new HashMap<>();
+                        optionInforRecord = (HashMap) optionInforList.get(i);
+                        %>
+                    <form>
+                        <input type="hidden" name="unique_id" value="<%= optionInforRecord.get("OPTION_INFOR_ID") %>">
+                    <tr>
+                        <td><%= optionInforRecord.get("OPTION_INFOR_ID") %></td>
+                        <td><%= optionInforRecord.get("OPTION_NAME") %></td>
+                        <td>
+                            <button type="submit" formaction="/optionInforsDeleteServlet">
+                                <%= optionInforRecord.get("OPTION_INFOR_ID") %>
+                            </button>
+                        </td>
+                    </tr>
+                    </form>
+                <% } %>
+                </tbody>
+            </form>
         </table>
     </div>
 

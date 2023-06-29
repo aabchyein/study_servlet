@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.example.study_servlet.commons.Commons;
 import com.example.study_servlet.daos.OptionInforsDao;
 
-@WebServlet(urlPatterns = "/OptionInforsServlet")
+@WebServlet(urlPatterns = "/optionInforsServlet")
 public class OptionInforsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

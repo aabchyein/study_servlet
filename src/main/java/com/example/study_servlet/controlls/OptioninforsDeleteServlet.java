@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.example.study_servlet.daos.OptionInforsDao;
 
 @WebServlet(urlPatterns = "/optionInforsDeleteServlet")
-public class OptionInforsDeleteServlet extends HttpServlet {
+public class OptioninforsDeleteServlet extends HttpServlet {
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        try {
