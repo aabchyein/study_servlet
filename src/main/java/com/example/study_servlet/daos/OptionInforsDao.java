@@ -81,7 +81,7 @@ public class OptionInforsDao {
                 optionInforList.add(optionInforRecord);
 
 
-                    } // 넣은 것과 반대 순서로 뽑아내 
+                    } // 넣은 것과 반대 순서로 뽑아냄
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
