@@ -26,8 +26,8 @@ public class SessionCreateServlet extends HttpServlet {
             // login
 
             HttpSession httpSession = request.getSession(false); // Session이 있으면 쓰고 없으면 만들어줌(create여부를 결정)
-            if (httpSession != null) { // JSESSION 있음 - 로그인 되었다는 표시가 됨
-                String usernameSession = (String) httpSession.getAttribute("username");
+              String usernameSession = (String) httpSession.getAttribute("username");
+            if (httpSession != null && usernameSession != null) { // JSESSION 있음 - 로그인 되었다는 표시가 됨
                 printWriter.println("<div>username : "+usernameSession+"</div>");
             } else { // JSESSION 없음 - 로그인을 다시 해야 하는 상태
                 if ("yojulab".equals(username) && "1234".equals(password)) {
